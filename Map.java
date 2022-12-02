@@ -1,18 +1,7 @@
 import com.google.common.graph.*; 
+import java.util.HashSet;
 /*The map class holds the struture of the game and allows the person to move through it */
 public class Map {
-    Location lakeOne;
-    Location sawCamp; 
-    Location butterCamp; 
-    Location flourCamp;
-    Location portage; 
-    Location mooseLake;
-    Location sugarCamp;
-    Location emptyCamp1;
-    Location finalCamp;
-    Location panCamp;
-    Location cinnamonCamp;
-    Location emptyCamp2;  
 
     public ImmutableGraph<Location> graph;
    
@@ -52,6 +41,15 @@ public class Map {
 
         //}
         return (graph.hasEdgeConnecting(current, want));
+    }
+
+    public Location stringtoLocation(String name) {
+        for(Location loc : this.graph.nodes()) {
+            if (name.equals(loc.name.toLowerCase())) {
+                return loc;
+            }
+        }
+        return null;
     }
 
     public static void main(String[] args) {

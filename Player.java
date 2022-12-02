@@ -13,11 +13,12 @@ public class Player {
         this.location = start;
     }
 
-    public void paddle(Location location) {
+    public void paddle(String location) {
+        Location newloc = this.world.stringtoLocation(location);
         //I need to figure out how to check if the person has a correct item to move past a certain location-suggestions?
-        if (this.world.canMove(this.location, location) == true) {
-            this.location = location;
-            System.out.println("You are now at " + this.location.name);
+        if (this.world.canMove(this.location, newloc) == true) {
+            this.location = newloc;
+            System.out.println(this.location.description);
         }
         else {
             System.out.println("You cannot move to this location");

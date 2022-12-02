@@ -8,8 +8,8 @@ public class Controller {
     public static void main(String[] args) {
         //Locations loaded in to be passed into map constructor & a list used to iterate through 
         //I don't think this is the best way to do this
-        Location start = new Location("Drop Off", "This is the area you began in. There are no items in the area");
-        Location lakeOne = new Location("Lake 1", "You made it to the middle of Lake 1! From here, you can paddle to Campsite One, Campsite Three, Campsite Two, Bushwack Portage, and Campsite Three");
+        Location start = new Location("Drop Off", "This is the area you began in. There are no items in the area. From here, you must 'paddle to lake one' ");
+        Location lakeOne = new Location("Lake one", "You made it to the middle of Lake 1! From here, you can paddle to Campsite One, Campsite Three, Campsite Two, Bushwack Portage, and Campsite Three");
         Location sawCamp = new Location("What is the name of the park in Canada directy north of the Boundary Waters?", "Quetico", "Campsite One", "You made it to Campsite One! In the middle of the campsite, there is a sharp saw. From here, you can paddle to Lake 1");
         Location butterCamp = new Location( "The Boundary Waters is a apart of the Superior National Forest in Minnesota. What percentage of the US forest system is the Superior National Forest? Answer with a number only.", "20", "Campsite Two", "You made it to Campsite Two! There is a chest in the middle of the campsite. \nFrom here, you can paddle to Lake 1");
         Location flourCamp = new Location("What are the length of portages (walking with gear between lakes) measured in?", "rods", "Campsite Three", "You made it to Campsite Three! ");
@@ -75,15 +75,16 @@ public class Controller {
             if (command.startsWith("paddle to")) {
                 try{
                     command = command.substring(10);
-                    //Strugging to figure out how to go from input typed to a location....suggestions??? player.
-
+                    player.paddle(command);
                 } 
                 catch (Exception e) {
+                    System.out.println(e);
                     System.out.println("Please enter 'paddle to 'location' ' ");
-            }
+                }
+            }   
         }
         System.out.println("Thank you for playing!");
         myObj.close();
-        }
+        
     }
 }
