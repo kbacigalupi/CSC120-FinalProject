@@ -16,7 +16,6 @@ _____ 1 pt: Gameplay supports **reversible moves** where reasonable (e.g., if yo
 
 _____ 1 pt: Some paths through the game have **restricted access** until the player has completed a task or acquired a specific item (i.e. a key to open a door, etc.).
 
-
 ## Back-End Design (10 pts)
 
 Next time:  general classes
