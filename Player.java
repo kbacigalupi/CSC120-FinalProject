@@ -1,60 +1,103 @@
 import java.util.ArrayList;
 
-/*The person class is the user */
+/*The person class is the user*/
 public class Player {
-    Location location;
-    ArrayList<item> inventory;
-    Map world;
+    Location location; //Where the person is
+    ArrayList<Item> inventory; //What the person has
+    Map world; //What world they're moving around 
 
-
+    /*Constructor for the player
+     * @param the world the player is moving around in (a map)
+     * @param the location the player is starting 
+     */
     public Player(Map world, Location start) {
-        this.inventory = new ArrayList<item>();
+        this.inventory = new ArrayList<Item>();
         this.world = world;
         this.location = start;
     }
 
+    /*Allows the player to paddle to a new location if they are next to it
+     * @param location that the user types in 
+    */
     public void paddle(String location) {
-        Location newloc = this.world.stringtoLocation(location);
+        Location newloc = this.world.stringtoLocation(location); //Takes the input and makes it a location-only the map can access all its' locations
         //I need to figure out how to check if the person has a correct item to move past a certain location-suggestions?
-        if (this.world.canMove(this.location, newloc) == true) {
+        if (this.world.canMove(this.location, newloc) == true) { //Only the map knows locations, if statement "moves" the player & prints out new location
             this.location = newloc;
             System.out.println(this.location.description);
         }
         else {
-            System.out.println("You cannot move to this location");
+            System.out.println("You cannot move to this location-you are not next to " + location);
+        }
+
+    }
+    /*The portage function allows the user to move from one side of the portage to the other if they have the saw*/
+    public void portage() {
+        if(!this.inventory.contains(Item.saw)) {
+            System.out.println("You do not have the saw and cannot pass through the portage right now");
+            return;
+        }   
+        Location newloc = this.world.canPortage(this.location);
+        if (!newloc.equals(null)) {
+            this.location = newloc;
+            System.out.println(this.location.description);
+            return;
+        }
+        else {
+            System.out.println("You cannot portage from this location");
         }
 
     }
 
-    public void portage(String location) {
-
+    /*Drops an item at any location the user is in the water they lose the item
+     * @param the item that is being dropped
+    */
+    public void drop(String itemName) {
+        Item toDrop = Item.nameToItem(itemName);
+        if (this.inventory.contains(toDrop)) {
+            this.inventory.remove(toDrop);
+            this.location.addItem(toDrop);
+            System.out.println("You have dropped " + toDrop + " at " + this.location.name);
+            return;
+        } 
+        System.out.println("You do not have this item in your inventory");
     }
 
-    public void drop(item item) {
-        this.inventory.remove(item);
-        System.out.println("You have dropped " + item + " at " + this.location.name);
+    /*The user picks up an item
+     * @item the object being picked up
+     */
+    public void take(String itemName) {
+        Item item = Item.nameToItem(itemName);
+        if (item == null) {
+            System.out.println("This item does not exist in the game");
+        }
+        if (this.location.hasObject(item) == true) {
+            this.inventory.add(item);
+            this.location.remove(item);
+            System.out.println("You have picked up" + item);
+        }
+        else {
+            System.out.println("This item's not here");
+        }
     }
 
-    public void take(item item) {
-        this.inventory.add(item);
-        System.out.println("You have picked up" + item);
-    }
-
+    /*Tells the user what is going on around them*/
     public void lookAround() {
         System.out.println(this.location.description);
     }
 
-    public void help() {
-        
-    }
-
-    public void haveItem() {
-
+    /*Tells the user all of the items that are in their inventory*/
+    public void myItems() {
+        for (int i = 0; i<inventory.size(); i++) {
+            if (i <inventory.size() +1) {
+                System.out.print(inventory.get(i).name + ", ");
+            }
+        }
     }
 
     //Maybe unnecesary 
-    public void examine() {
-        
+    public void examine(Item item) {
+        System.out.println(item.getUse());
     }
 
 
