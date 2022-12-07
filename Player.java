@@ -15,7 +15,7 @@ public class Player {
         this.world = world;
         this.location = start;
     }
-
+    
     /*Allows the player to paddle to a new location if they are next to it
      * @param location that the user types in 
     */
@@ -119,12 +119,54 @@ public class Player {
         System.out.println(item.getUse());
     }
 
-    /*Tests so the user can win */
+    /*Tests so the user can win
+     * @param if the user has all the items or not
+    */
     public boolean hasAll() {   
         if (this.inventory.containsAll(Item.allItems)) {
             return true;
         }
         return false;
+    }
+
+
+    public static void main(String[] args) {
+        Location start = new Location("Drop Off", "This is the area you began in. There are no items in the area. From here, you must 'paddle to lake one' ");
+        Location lakeOne = new Location("Lake one", "You made it to the middle of Lake One! From here, you can paddle to Campsite One, Campsite Three, Campsite Two, Bushwack Portage, and Campsite Three");
+        Location sawCamp = new Location("What is the name of the park in Canada directy north of the Boundary Waters?", "quetico", "Campsite One", "You made it to Campsite One! In the middle of the campsite, there is a sharp saw. From here, you can paddle to Lake 1");
+        Location butterCamp = new Location( "The Boundary Waters is a apart of the Superior National Forest in Minnesota. What percentage of the US forest system is the Superior National Forest? Answer with a number only.", "20", "Campsite Two", "You made it to Campsite Two! There's a hole in the ground! Inside the hole is butter. \nFrom here, you can paddle to Lake One");
+        Location flourCamp = new Location("What are the length of portages (walking with gear between lakes) measured in?", "rods", "Campsite Three", "You made it to Campsite Three! There is a bag of flour hanging from a tree. \nFrom here, you can paddle to Lake 1");
+        Location portageStart = new Location("Bushwack Portage", "You made it to the Lake One side of Bushwack Portage! The trees seem rather overgrown. Seems like you might need a saw to get through today");
+        Location portageEnd = new Location("Bushwack Portage end", "You're at the Moose Lake side of Bushwack Portage! From here, you can paddle to Moose Lake or portage back to Lake One");
+        Location mooseLake = new Location("Moose Lake", "You made it to Moose Lake! From here, you can paddle to Campsite Four, Campsite Five, Campsite Six, Campsite Seven, Campsite Eight, and Campsite Nine");
+        Location sugarCamp = new Location("About how many lakes are there in the boundary waters? Answer in a whole number in the thousands (ex. 1 is 1000)", "2", "Campsite Four", "You made it to Campsite Four! There's a sack of sugar in some blueberry bushes. \nFrom here you can paddle to Moose Lake");
+        Location emptyCamp1 = new Location("Campsite Five", "You made it to Campsite Five! There are gorgeous pine trees all around & it appears someone is already here--maybe you could ask them for help. (THIS FEATURE IS NOT IMPLEMENTED YET & MAY NOT BE)\n From here you can paddle to Lake One");
+        Location finalCamp = new Location("What animal lives in the boundary waters and is known for making dams?", "beaver", "Campsite Six", "You made it to Campsite Six! There is a chest at this campsite.");
+        Location panCamp = new Location("What kind of boat is the world's oldest boat?", "canoe", "Campsite Seven", "Welcome to Campsite Seven. There's a cast iron pan for your cinnamon rolls! \n From here you can paddle to Moose Lake");
+        Location cinnamonCamp = new Location("What large animal found in the Boundary Waters can run up to 35 mph?", "moose", "Campsite Eight", "You made it to campsite Eight! There are beautiful birch trees all around! There's also a shaker filled with cinnamon\nFrom here you can paddle to Moose Lake");
+        Location emptyCamp2 = new Location("Campsite Nine", "You made it to Campsite Nine! It's a beautiful place. You walk around and find no ingredients");
+    
+
+        /* A map of the World is created*/
+        Map worldMapone = new Map(start, lakeOne, sawCamp, butterCamp, flourCamp, portageStart, portageEnd, mooseLake, sugarCamp, emptyCamp1, finalCamp, panCamp, cinnamonCamp, emptyCamp2);
+        
+        Item.addItems();
+
+        /*Initiates The player of the game*/
+        Player player = new Player(worldMapone, finalCamp);
+
+        player.inventory.add(Item.butter);
+        player.inventory.add(Item.cinnamon);
+        player.inventory.add(Item.saw);
+        player.inventory.add(Item.sugar);
+        player.inventory.add(Item.flour);
+        player.inventory.add(Item.pan);
+        player.inventory.add(Item.recipe);
+
+        player.myItems();
+
+        System.out.println(player.hasAll());
+
     }
 }
     

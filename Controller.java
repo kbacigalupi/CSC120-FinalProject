@@ -27,8 +27,8 @@ public class Controller {
         return null;
     }
 
-    public void checkWin(Player player, Map map) {
-        if (player.hasAll() == true && player.location.equals(map.finalCamp)){
+    public void checkWin(Player player) {
+        if (player.hasAll() == true){
             System.out.println("Drumrollll pleasee......");
             System.out.println("You have just made the best cinnamon rolls in your life & won the game! Congrats");
         }
@@ -38,20 +38,18 @@ public class Controller {
 
     }
 
-    
-
     public static void main(String[] args) {
         Controller game = new Controller();
         /*Locations loaded in to be passed into map constructor*/
         //I don't think this is the best way to do this, but this is the best that I have now....
         Location start = new Location("Drop Off", "This is the area you began in. There are no items in the area. From here, you must 'paddle to lake one' ");
-        Location lakeOne = new Location("Lake one", "You made it to the middle of Lake One! From here, you can paddle to Campsite One, Campsite Three, Campsite Two, Bushwack Portage, and Campsite Three");
+        Location lakeOne = new Location("Lake one", "You made it to the middle of Lake One! From here, you can paddle to Campsite One, Campsite Two, Bushwack Portage, and Campsite Three");
         Location sawCamp = new Location("What is the name of the park in Canada directy north of the Boundary Waters?", "quetico", "Campsite One", "You made it to Campsite One! In the middle of the campsite, there is a sharp saw. From here, you can paddle to Lake 1");
         Location butterCamp = new Location( "The Boundary Waters is a apart of the Superior National Forest in Minnesota. What percentage of the US forest system is the Superior National Forest? Answer with a number only.", "20", "Campsite Two", "You made it to Campsite Two! There's a hole in the ground! Inside the hole is butter. \nFrom here, you can paddle to Lake One");
         Location flourCamp = new Location("What are the length of portages (walking with gear between lakes) measured in?", "rods", "Campsite Three", "You made it to Campsite Three! There is a bag of flour hanging from a tree. \nFrom here, you can paddle to Lake 1");
         Location portageStart = new Location("Bushwack Portage", "You made it to the Lake One side of Bushwack Portage! The trees seem rather overgrown. Seems like you might need a saw to get through today");
         Location portageEnd = new Location("Bushwack Portage end", "You're at the Moose Lake side of Bushwack Portage! From here, you can paddle to Moose Lake or portage back to Lake One");
-        Location mooseLake = new Location("Moose Lake", "You made it to Moose Lake! From here, you can paddle to Campsite Four, Campsite Five, Campsite Six, Campsite Seven, Campsite Eight, and Campsite Nine");
+        Location mooseLake = new Location("Moose Lake", "You made it to Moose Lake! From here, you can paddle to Bushwack Portage end, Campsite Four, Campsite Five, Campsite Six, Campsite Seven, Campsite Eight, and Campsite Nine");
         Location sugarCamp = new Location("About how many lakes are there in the boundary waters? Answer in a whole number in the thousands (ex. 1 is 1000)", "2", "Campsite Four", "You made it to Campsite Four! There's a sack of sugar in some blueberry bushes. \nFrom here you can paddle to Moose Lake");
         Location emptyCamp1 = new Location("Campsite Five", "You made it to Campsite Five! There are gorgeous pine trees all around & it appears someone is already here--maybe you could ask them for help. (THIS FEATURE IS NOT IMPLEMENTED YET & MAY NOT BE)\n From here you can paddle to Lake One");
         Location finalCamp = new Location("What animal lives in the boundary waters and is known for making dams?", "beaver", "Campsite Six", "You made it to Campsite Six! There is a chest at this campsite.");
@@ -89,6 +87,7 @@ public class Controller {
 
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         String command = "";
+
 
 
         /*Game loop */
@@ -160,8 +159,14 @@ public class Controller {
             else if (command.startsWith("portage")) {
                 player.portage(portageStart, portageEnd);
             }
+            //Think location check should be in a method but not sure exactly how to do this
             else if(command.equals("make cinnamon rolls")) {
-                game.checkWin(player, worldMap); 
+                if (player.location.equals(finalCamp)) {
+                    game.checkWin(player);
+                } 
+                else {
+                    System.out.println("You are at the wrong location)");
+                }
                 break;
             }
             //else if(command.startsWith("examine")) { - Not yet implemented but want to be able to examine items
@@ -169,6 +174,9 @@ public class Controller {
 
 
             //}
+            else if(command.equals("have")) {
+                player.myItems();
+            }
             else if(command.startsWith("open")) {
                 if (command.endsWith("chest")) {
                     System.out.println("There is a recipe inside!");

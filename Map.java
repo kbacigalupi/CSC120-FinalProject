@@ -72,10 +72,8 @@ public class Map {
      * @param the location of the end of the portage or null if they haven't med the qualifications
     */
     public Location canPortage(Location current, Location portageStart, Location portageEnd) {
-        System.out.println(current.name);
-        System.out.println(portageStart);
+
         if (current.name.equals(portageStart.name)) {
-            System.out.println(portageEnd.name);
             return portageEnd;
         }
         else if (current.name.equals(portageEnd.name)) {
