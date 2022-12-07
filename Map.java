@@ -19,7 +19,10 @@ public class Map {
     Location emptyCamp2;
 
     public ImmutableGraph<Location> graph;
-   
+    
+    /*Constructor of the map
+     * @param all of the lcoations (lakeOne, sawCamp, flourCamp, butterCamp, etc that are in the game)
+     */
     public Map(Location start, 
     Location lakeOne, 
     Location sawCamp, 
@@ -55,21 +58,39 @@ public class Map {
         .build();
     }
 
+    /*Checks to see if a player can phsycially move between two nodes of a graph
+     * @param the location of the user currently
+     * @param the location they want to move to
+     */
     public boolean canMove(Location current, Location want) {
         return (graph.hasEdgeConnecting(current, want));
     }
 
-    public Location canPortage(Location current) {
-        if (current.equals(this.portageStart) == true) {
-            return this.portageEnd;
+    /*Checks to see if a user can portage and gives back the location that they would end at if they are able to portage
+     * @param current location of user
+     * @param the location of the start of the portage
+     * @param the location of the end of the portage or null if they haven't med the qualifications
+    */
+    public Location canPortage(Location current, Location portageStart, Location portageEnd) {
+        System.out.println(current.name);
+        System.out.println(portageStart);
+        if (current.name.equals(portageStart.name)) {
+            System.out.println(portageEnd.name);
+            return portageEnd;
         }
-        else if (current.equals(this.portageEnd)) {
-            return this.portageStart;
+        else if (current.name.equals(portageEnd.name)) {
+            return portageStart;
         }
+        else {
             return null;
+        }
+            
     }
 
-
+    /*Takes the user's string and returns a location 
+     * @param string name that the user inputs
+     * @return the location that the user means orrr null if they don't enter a valid location
+    */
     public Location stringtoLocation(String name) {
         for(Location loc : this.graph.nodes()) {
             if (name.equals(loc.name.toLowerCase())) {
@@ -79,15 +100,4 @@ public class Map {
         return null;
     }
 
-    /*public void addItem(item toAdd) {
-        for(Location loc : this.graph.nodes()) {
-            if (loc.items.contains(toAdd)) {
-                
-            }
-        } 
-    }/* */
-
-    public static void main(String[] args) {
-       
-    }
 }

@@ -1,4 +1,4 @@
-/*Chat bot sits at the start and also at the first portage(?)*/
+/*Chat bot sits at the start and also at the first portage(? - RN this is fully code from the chatbot assignment and is NOT being used)*/
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.Random;
