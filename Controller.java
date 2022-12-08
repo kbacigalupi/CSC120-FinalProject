@@ -28,6 +28,7 @@ public class Controller {
     }
 
     public void checkWin(Player player) {
+
         if (player.hasAll() == true){
             System.out.println("Drumrollll pleasee......");
             System.out.println("You have just made the best cinnamon rolls in your life & won the game! Congrats");
@@ -41,12 +42,11 @@ public class Controller {
     public static void main(String[] args) {
         Controller game = new Controller();
         /*Locations loaded in to be passed into map constructor*/
-        //I don't think this is the best way to do this, but this is the best that I have now....
         Location start = new Location("Drop Off", "This is the area you began in. There are no items in the area. From here, you must 'paddle to lake one' ");
         Location lakeOne = new Location("Lake one", "You made it to the middle of Lake One! From here, you can paddle to Campsite One, Campsite Two, Bushwack Portage, and Campsite Three");
-        Location sawCamp = new Location("What is the name of the park in Canada directy north of the Boundary Waters?", "quetico", "Campsite One", "You made it to Campsite One! In the middle of the campsite, there is a sharp saw. From here, you can paddle to Lake 1");
+        Location sawCamp = new Location("What is the name of the park in Canada directly north of the Boundary Waters?", "quetico", "Campsite One", "You made it to Campsite One! In the middle of the campsite, there is a sharp saw. From here, you can paddle to Lake One");
         Location butterCamp = new Location( "The Boundary Waters is a apart of the Superior National Forest in Minnesota. What percentage of the US forest system is the Superior National Forest? Answer with a number only.", "20", "Campsite Two", "You made it to Campsite Two! There's a hole in the ground! Inside the hole is butter. \nFrom here, you can paddle to Lake One");
-        Location flourCamp = new Location("What are the length of portages (walking with gear between lakes) measured in?", "rods", "Campsite Three", "You made it to Campsite Three! There is a bag of flour hanging from a tree. \nFrom here, you can paddle to Lake 1");
+        Location flourCamp = new Location("What are the length of portages (walking with gear between lakes) measured in?", "rods", "Campsite Three", "You made it to Campsite Three! There is a bag of flour hanging from a tree. \nFrom here, you can paddle to Lake One");
         Location portageStart = new Location("Bushwack Portage", "You made it to the Lake One side of Bushwack Portage! The trees seem rather overgrown. Seems like you might need a saw to get through today");
         Location portageEnd = new Location("Bushwack Portage end", "You're at the Moose Lake side of Bushwack Portage! From here, you can paddle to Moose Lake or portage back to Lake One");
         Location mooseLake = new Location("Moose Lake", "You made it to Moose Lake! From here, you can paddle to Bushwack Portage end, Campsite Four, Campsite Five, Campsite Six, Campsite Seven, Campsite Eight, and Campsite Nine");
@@ -56,18 +56,19 @@ public class Controller {
         Location panCamp = new Location("What kind of boat is the world's oldest boat?", "canoe", "Campsite Seven", "Welcome to Campsite Seven. There's a cast iron pan for your cinnamon rolls! \n From here you can paddle to Moose Lake");
         Location cinnamonCamp = new Location("What large animal found in the Boundary Waters can run up to 35 mph?", "moose", "Campsite Eight", "You made it to campsite Eight! There are beautiful birch trees all around! There's also a shaker filled with cinnamon\nFrom here you can paddle to Moose Lake");
         Location emptyCamp2 = new Location("Campsite Nine", "You made it to Campsite Nine! It's a beautiful place. You walk around and find no ingredients");
-    
+        
 
         /* A map of the World is created*/
         Map worldMap = new Map(start, lakeOne, sawCamp, butterCamp, flourCamp, portageStart, portageEnd, mooseLake, sugarCamp, emptyCamp1, finalCamp, panCamp, cinnamonCamp, emptyCamp2);
         
+        //Items are all added into a list that can be compared to the user's list
         Item.addItems();
 
         /*Initiates The player of the game*/
         Player player = new Player(worldMap, start);
     
 
-        // Adding items to their location
+        //Adding items to their location
         sawCamp.dropItem(Item.saw);
         flourCamp.dropItem(Item.flour);
         sugarCamp.dropItem(Item.sugar);
@@ -82,76 +83,30 @@ public class Controller {
         System.out.println("Welcome to the BOUNDARY WATERS - an area in Northern Minnesota filled with lakes and canoes.");
         System.out.println("Today you are the most RAVENOUS that you have been in your life. \nYou must move from campsite to campsite through the lakes, portages, and campsites to pick up all the ingredients to make the BEST cinnamon roll of your life.");
         System.out.println("However-you only have enough firewood to make the cinnamon rolls ONCE and at the correct campsite. You must have all of the ingredients to do so first. Good luck!");
-        System.out.println("You are currently at a drop off point-good luck! Enter help for more information.");
+        System.out.println("You are currently at a drop off point-good luck!");
+        System.out.println("Enter help for more information");
 
 
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         String command = "";
 
 
-
-        /*Game loop */
+        /*Game loop*/
         while (!command.equals("exit")) {
             System.out.println("Enter next command");
             command = myObj.nextLine();  // Read user input & make it lower case
             command = command.toLowerCase(); 
+            if (command.equals("exit")) {
+                break;
+            }
             if (command.equals("look")) {
                 player.lookAround();
             }
             else if (command.startsWith("paddle to")) {
-                try{
-                    command = command.substring(10);
-                    player.paddle(command);
-                } 
-                catch (Exception e) {
-                    System.out.println("Please enter 'paddle to 'location' ' ");
-                }
-            }  
-            //I think that the take sequence should be in a different function, however I'm not sure how to avoid scanner errors 
+                player.paddle(command.substring(10));
+            } 
             else if (command.startsWith("take")) {
-                try {
-                    command = command.substring(5);
-                    Item item = Item.nameToItem(command);
-                    if (item == null) {
-                        System.out.println("This item does not exist in the game");
-                    }
-                    else if (player.inventory.contains(item)) {
-                        System.out.println("You already have this item");
-                    }
-                    else if (!player.location.hasObject(item)) {
-                        System.out.println("There's no " + command + " here");
-                    }
-                    else {
-                        System.out.println("");
-                        System.out.println("You must answer a TRIVIA question first:");
-                        for (int i = 1; i<= 5; i++) {
-                            System.out.println(player.location.riddle + " Enter answer below:");
-                            String answer = myObj.nextLine();
-                            answer = answer.toLowerCase();
-                            if (answer.equals(player.getLocation().answer)) {
-                                player.inventory.add(item);
-                                player.location.remove(item);
-                                System.out.println("You have picked up " + item.name);
-                                break;
-                            }
-                            else {
-                                System.out.println("Not quite! You have " + (5-i) + " tries left.");
-                            }
-                        }
-                    }
-                }
-                catch (Exception e) {
-                    System.out.println("Please enter take 'item' ");
-                }
-            }
-            else if (command.startsWith("drop")) {
-                try {
-                    command = command.substring(4);
-                    player.drop(command);
-                }
-                catch (Exception e) {
-                    System.out.println("Please enter drop 'item' ");
-                }
+                player.take(command.substring(5), myObj);
             }
             else if(command.equals("help")){
                 help();
@@ -159,7 +114,7 @@ public class Controller {
             else if (command.startsWith("portage")) {
                 player.portage(portageStart, portageEnd);
             }
-            //Think location check should be in a method but not sure exactly how to do this
+            //TODO Un-sphagetti-ify this - Think location check should be in a method but not sure exactly how to do this
             else if(command.equals("make cinnamon rolls")) {
                 if (player.location.equals(finalCamp)) {
                     game.checkWin(player);
@@ -169,18 +124,11 @@ public class Controller {
                 }
                 break;
             }
-            //else if(command.startsWith("examine")) { - Not yet implemented but want to be able to examine items
-                //command = command.substring(8);
-
-
-            //}
             else if(command.equals("have")) {
                 player.myItems();
             }
-            else if(command.startsWith("open")) {
-                if (command.endsWith("chest")) {
-                    System.out.println("There is a recipe inside!");
-                }
+            else if(command.startsWith("open") && player.location.equals(worldMap.finalCamp)) {
+                player.openChest(command, myObj, player.location);
             }
             else {
                 System.out.println("I'm sorry I don't understand that command. Enter 'help' to get a reminder of what you can do");

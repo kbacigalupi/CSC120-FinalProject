@@ -44,13 +44,13 @@ public class Location {
     public void remove (Item item) {
         this.items.remove(item);
         if (this.name.equals("Campsite One")) {
-            this.description.equals("You made it to Campsite One! In the middle of the campsite, there is a sharp saw. From here, you can paddle to Lake 1");
+            this.description = ("You made it to Campsite One! From here, you can paddle to Lake One");
         }
         else if (this.name.equals("Campsite Two")) {
-            this.description.equals("You made it to Campsite Two! There's a hole in the ground & it is empty. Looks like you've gotten everything.  \nFrom here, you can paddle to Lake One");
+            this.description = ("You made it to Campsite Two! There's a hole in the ground & it is empty. Looks like you've gotten everything.  \nFrom here, you can paddle to Lake One");
         }
         else if(this.name.equals("Campsite Three")) {
-            this.description.equals("You made it to Campsite Three! \nFrom here, you can paddle to Lake 1");
+            this.description.equals("You made it to Campsite Three! \nFrom here, you can paddle to Lake One");
         }
         else if(this.name.equals("Campsite Four")) {
             this.description.equals("You made it to Campsite Four! From here you can paddle to Moose Lake");

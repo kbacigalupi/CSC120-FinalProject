@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /*The person class is the user*/
 public class Player {
@@ -53,6 +54,7 @@ public class Player {
     /*Drops an item at any location the user is in the water they lose the item
      * @param the name of the item that is being dropped
      * Now that I think about it this may not be necessary
+     * TO DO decide if you want to keep this/be able to drop 
     */
     public void drop(String itemName) {
         Item toDrop = Item.nameToItem(itemName);
@@ -69,29 +71,35 @@ public class Player {
     }
 
     /*The user picks up an item
-     * @itemName the name of the object being picked up - could not use this method once I implemented the trivia questions
+     * @itemName the name of the object being picked up
      */
-    /*public void take(Item item) {
-        //Item item = Item.nameToItem(itemName);
-        //if (item == null) {
-            //System.out.println("This item does not exist in the game");
-        //}
-        if (this.location.hasObject(item) == true) {
-            int tries = 1;
-            System.out.println(this.location.riddle + ": Enter answer below");
-            if (answer.equals(this.location.answer) & tries <=5) {
-                this.inventory.add(item);
-                this.location.remove(item);
-                System.out.println("You have picked up " + item.name);
+
+    public void take(String itemName, Scanner scanner) {
+        Item item = Item.nameToItem(itemName);
+        if (item == null) {
+            System.out.println("This item does not exist in the game");
+        }
+        else if (this.location.hasObject(item) == true) {
+            System.out.println(this.location.riddle + " Enter answer below");
+            String answer = scanner.nextLine();
+            for (int tries = 1; tries <=5; tries++) {
+                if (answer.equals(this.location.answer) & tries <=5) {
+                    this.inventory.add(item);
+                    this.location.remove(item);
+                    System.out.println("You have picked up " + item.name);
+                    break;
+                }
+                else {
+                    System.out.println("Not quite! You have " + (5-tries) + " tries left");
+                }
             }
-            else {
-                System.out.println("Not quite! You have" + (5-tries) + "tries left");
-            }
+            //TODO WHAT HAPPENS AFTER 5 TRIES
+            System.out.println("");
         }
         else {
             System.out.println("This item's not here");
         }
-    }*/
+    }
 
     /*Accessor for the location of the person
      * @return location of player
@@ -127,6 +135,12 @@ public class Player {
             return true;
         }
         return false;
+    }
+
+    public void openChest(String command, Scanner scanner, Location playerLocation) {
+        if (command.endsWith("chest")) {
+            System.out.println("There is a recipe inside!"); 
+        }
     }
 
 
