@@ -61,6 +61,7 @@ public class Map {
     /*Checks to see if a player can phsycially move between two nodes of a graph
      * @param the location of the user currently
      * @param the location they want to move to
+     * @return true/false whether the user can move between two nodes
      */
     public boolean canMove(Location current, Location want) {
         return (graph.hasEdgeConnecting(current, want));
@@ -72,7 +73,6 @@ public class Map {
      * @param the location of the end of the portage or null if they haven't med the qualifications
     */
     public Location canPortage(Location current, Location portageStart, Location portageEnd) {
-
         if (current.name.equals(portageStart.name)) {
             return portageEnd;
         }

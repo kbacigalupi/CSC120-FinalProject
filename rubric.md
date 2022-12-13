@@ -14,7 +14,7 @@ ___YES__ 1 pt: Some paths through the game have **restricted access** until the 
 
 ## Back-End Design (10 pts)
 
-_____ 2 pts: Selected classes(s) are **effective, efficient** at supporting the desired operations and program behavior.
+___YES__ 2 pts: Selected classes(s) are **effective, efficient** at supporting the desired operations and program behavior.
 
 _____ 2 pts: Design justification includes a discussion of at least one (reasonable) **alternative design** that could have been used, and the reasons why you decided against this alternative.
 

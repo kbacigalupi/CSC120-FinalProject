@@ -31,13 +31,6 @@ public class Location {
         this.description = description;
     }
 
-    /*Not sure this method is necessary for the game (Not being used now), but allows user to drop an item 
-     * @param the item to remove
-    */
-    public void dropItem(Item item) {
-        this.items.add(item);
-    }
-
     /*when a user picks up an item, takes it away from the location & changes the description 
      * @param item to remove from the location 
      */

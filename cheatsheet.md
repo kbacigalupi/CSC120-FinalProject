@@ -21,6 +21,7 @@ If your game includes challenges that must be overcome to win, also list them be
 Must pick up all items to make the cinnamon rolls
 Must have the saw to be able to portage from one area to the other
 Can only type in "make cinnamon rolls" once at the correct location AND have all of the items to win
+Otherwise the game ends
 
 Trivia questions & answers:
 What is the name of the park in Canada directy north of the Boundary Waters? (quetico)
