@@ -31,6 +31,12 @@ public class Location {
         this.description = description;
     }
 
+    /*puts each item at a location to start with 
+     * @param the item to remove
+    */
+    public void dropItem(Item item) {
+        this.items.add(item);
+    }
     /*when a user picks up an item, takes it away from the location & changes the description 
      * @param item to remove from the location 
      */

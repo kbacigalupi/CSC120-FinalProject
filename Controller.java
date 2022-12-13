@@ -133,7 +133,12 @@ public class Controller {
             player.paddle(command.substring(10));
         }
         else if (command.startsWith("take")) {
+            try{
             player.take(command.substring(5), myObj, game.start);
+            }
+            catch (Exception e) {
+                System.out.println("Please type in item to take");
+            }
         }
         else if(command.equals("help")){
             help();
