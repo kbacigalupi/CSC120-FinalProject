@@ -23,19 +23,19 @@ public class Controller {
         this.moves = 0;
         /*Locations loaded in to be passed into map constructor*/
        this.start = new Location("Drop Off", "This is the area you began in. There are no items in the area. From here, you must 'paddle to lake one' ");
-       this.lakeOne = new Location("Lake one", "You made it to the middle of Lake One! From here, you can paddle to Campsite One, Campsite Two, Bushwack Portage, and Campsite Three");
-       this.sawCamp = new Location("What is the name of the park in Canada directly north of the Boundary Waters?", "quetico", "Campsite One", "You made it to Campsite One! In the middle of the campsite, there is a sharp saw. From here, you can paddle to Lake One");
-       this.butterCamp = new Location( "The Boundary Waters is a apart of the Superior National Forest in Minnesota. What percentage of the US forest system is the Superior National Forest? Answer with a number only.", "20", "Campsite Two", "You made it to Campsite Two! There's a hole in the ground! Inside the hole is butter. \nFrom here, you can paddle to Lake One");
-       this.flourCamp = new Location("What are the length of portages (walking with gear between lakes) measured in?", "rods", "Campsite Three", "You made it to Campsite Three! There is a bag of flour hanging from a tree. \nFrom here, you can paddle to Lake One");
-       this.portageStart = new Location("Bushwack Portage", "You made it to the Lake One side of Bushwack Portage! The trees seem rather overgrown. Seems like you might need a saw to get through today");
+       this.lakeOne = new Location("lake one", "You made it to the middle of Lake One! From here, you can paddle to Campsite One, Campsite Two, Bushwack Portage, and Campsite Three");
+       this.sawCamp = new Location("What is the name of the park in Canada directly north of the Boundary Waters?", "quetico", "Campsite One", "You made it to Campsite One! In the middle of the campsite, there is a sharp saw. From here, you can paddle to Lake One or Campsite Two");
+       this.butterCamp = new Location( "The Boundary Waters is a apart of the Superior National Forest in Minnesota. What percentage of the US forest system is the Superior National Forest? Answer with a number only.", "20", "Campsite Two", "You made it to Campsite Two! There's a hole in the ground! Inside the hole is butter. \nFrom here, you can paddle to Lake One, Campsite One, or Bushwack Portage");
+       this.flourCamp = new Location("What are the length of portages (walking with gear between lakes) measured in?", "rods", "Campsite Three", "You made it to Campsite Three! There is a bag of flour hanging from a tree. \nFrom here, you can paddle to Lake One or Bushwack Portage");
+       this.portageStart = new Location("Bushwack Portage", "You made it to the Lake One side of Bushwack Portage! The trees seem rather overgrown. Seems like you might need a saw to get through today. From here you can 'portage', paddle to Lake One, Campsite Two, or Campsite Three");
        this.portageEnd = new Location("Bushwack Portage end", "You're at the Moose Lake side of Bushwack Portage! From here, you can paddle to Moose Lake or portage back to Lake One");
        this.mooseLake = new Location("Moose Lake", "You made it to Moose Lake! From here, you can paddle to Bushwack Portage end, Campsite Four, Campsite Five, Campsite Six, Campsite Seven, Campsite Eight, and Campsite Nine");
-       this.sugarCamp = new Location("About how many lakes are there in the boundary waters? Answer in a whole number in the thousands (ex. 1 is 1000)", "2", "Campsite Four", "You made it to Campsite Four! There's a sack of sugar in some blueberry bushes. \nFrom here you can paddle to Moose Lake");
-       this.emptyCamp1 = new Location("Campsite Five", "You made it to Campsite Five! There are gorgeous pine trees all around but no ingredients :( From here you can paddle to moose lake");
-       this.finalCamp = new Location("What animal lives in the boundary waters and is known for making dams?", "beaver", "Campsite Six", "You made it to Campsite Six! This is the campsite where you can make your cinnamon rolls. There is a recipe pinned to a tree here");
-       this.panCamp = new Location("What kind of boat is the world's oldest boat?", "canoe", "Campsite Seven", "Welcome to Campsite Seven. There's a pan for your cinnamon rolls! \n From here you can paddle to Moose Lake");
-       this.cinnamonCamp = new Location("What large animal found in the Boundary Waters can run up to 35 mph?", "moose", "Campsite Eight", "You made it to campsite Eight! There are beautiful birch trees all around! There's also some cinnamon\nFrom here you can paddle to Moose Lake");
-       this.emptyCamp2 = new Location("Campsite Nine", "You made it to Campsite Nine! It's a beautiful place. You walk around and find no ingredients");
+       this.sugarCamp = new Location("About how many lakes are there in the boundary waters? Answer in a whole number in the thousands (ex. 1 is 1000)", "2", "Campsite Four", "You made it to Campsite Four! There's a sack of sugar in some blueberry bushes. \nFrom here you can paddle to Moose Lake or Campsite Five");
+       this.emptyCamp1 = new Location("Campsite Five", "You made it to Campsite Five! There are gorgeous pine trees all around but no ingredients :( From here you can paddle to Moose Lake, Campsite four, or Campsite Six");
+       this.finalCamp = new Location("What animal lives in the boundary waters and is known for making dams?", "beaver", "Campsite Six", "You made it to Campsite Six! This is the campsite where you can make your cinnamon rolls. There is a recipe pinned to a tree here. \nFrom here you can paddle to Moose Lake, Campsite Five, or Campsite Seven");
+       this.panCamp = new Location("What kind of boat is the world's oldest boat?", "canoe", "Campsite Seven", "Welcome to Campsite Seven. There's a pan for your cinnamon rolls! \n From here you can paddle to Moose Lake, Campsite Six, or Campsite Eight");
+       this.cinnamonCamp = new Location("What large animal found in the Boundary Waters can run up to 35 mph?", "moose", "Campsite Eight", "You made it to campsite Eight! There are beautiful birch trees all around! There's also some cinnamon\nFrom here you can paddle to Moose Lake, Campsite Seven, or Campsite Nine");
+       this.emptyCamp2 = new Location("Campsite Nine", "You made it to Campsite Nine! It's a beautiful place. You walk around and find no ingredients. \nFrom here you can paddle to Moose Lake or Campsite Eight.");
     }
 
     /*Another way to shorten the main method-in the set up of the game */
@@ -57,8 +57,7 @@ public class Controller {
        System.out.println("Welcome to the BOUNDARY WATERS - an area in Northern Minnesota filled with lakes and canoes.");
        System.out.println("Today you are the most RAVENOUS that you have been in your life. \nYou must move from campsite to campsite through the lakes, portages, and campsites to pick up all the ingredients to make the BEST cinnamon roll of your life.");
        System.out.println("However-you only have enough firewood to make the cinnamon rolls ONCE and at the correct campsite. You must have all of the ingredients to do so first. Good luck!");
-       System.out.println("You are currently at a drop off point-good luck!");
-       System.out.println("Enter help for more information");
+       System.out.println("You are currently at a drop off point. Enter 'help' for more information");
    }
 
    /*Tells the user the commands that they can type in  */
@@ -67,6 +66,9 @@ public class Controller {
        System.out.println("Here are the commands you can use in this game:"
         + "\npaddle to 'location' : allows you to paddle to a campsite, lake, or portage"
         + "\nhelp tells you what commands you can use in the game"
+        + "\nhave : tells you what items you have"
+        + "\nneed : tells you what items you need"
+        + "\nexamine: tells you what an item is for"
         + "\nlook : tells you where you are and where you can move (if you happen to forget)"
         + "\nportage : In the Boundary Waters, you might have to walk your canoe between lakes to get to further campsites. You can ONLY portage if you are at one end of a portage and if you have the correct items to do so"
         + "\ntake 'item' : if you come across something you want to pick up, you can pick the item with this command"
@@ -85,10 +87,10 @@ public class Controller {
        if (!player.location.equals(finalCamp)) {
            System.out.println("You are at the wrong location-Unfortunately you cannot make cinnamon rolls here. Unfortunately this means the game is over");
        }
-       else if (player.hasAll() == true){
+       else if (player.hasAll()){
            System.out.println("Drumrollll pleasee......");
            System.out.println("You have just made the best cinnamon rolls in your life & won the game! Congrats");
-           System.out.println("It took you " + this.moves + "to finish the game. Play again to beat this score!");
+           System.out.println("It took you " + this.moves + " moves to finish the game. Play again to beat this score!");
        }
        else {
            System.out.println("You have NOT been successful in making cinnamon rolls. Unfortunately this means the game is over :(. Hope your trip to the Boundary Waters ends up ok");
@@ -96,6 +98,7 @@ public class Controller {
  
    }
  
+   /*Main method with Game loop */
    public static void main(String[] args) {
 
        Controller game = new Controller();
@@ -118,48 +121,52 @@ public class Controller {
  
        //Game loop - could not figure out the logic to use switch() effectively--
        //there are a variety of multiple word commands that have the same first word 
-       while (!command.equals("exit")) {
-        System.out.println("Enter next command");
-        command = myObj.nextLine();  // Read user input & make it lower case
-        command = command.toLowerCase();
-        game.moves +=1;
-        if (command.equals("exit")) {
-            break;
-        }
-        if (command.equals("look")) {
-            player.lookAround();
-        }
-        else if (command.startsWith("paddle to")) {
-            player.paddle(command.substring(10));
-        }
-        else if (command.startsWith("take")) {
-            try{
-            player.take(command.substring(5), myObj, game.start);
+        while (!command.equals("exit")) {
+            System.out.println("Enter command");
+            command = myObj.nextLine();  // Read user input & make it lower case
+            command = command.toLowerCase().trim();
+            game.moves +=1;
+            if (command.equals("exit")) {
+                break;
             }
-            catch (Exception e) {
-                System.out.println("Please type in item to take");
+            if (command.equals("look")) {
+                player.lookAround();
             }
-        }
-        else if(command.equals("help")){
-            help();
-        }
-        else if (command.startsWith("portage")) {
-            player.portage(game.portageStart, game.portageEnd);
-        }
-        else if(command.equals("make cinnamon rolls")) {
-            if (player.location.equals(game.finalCamp)) {
+            else if (command.startsWith("paddle to")) {
+                player.paddle(command.substring(10));
+            }
+            else if (command.startsWith("take")) {
+                try{
+                    player.take(command.substring(5), myObj, game.start, game);
+                }
+                catch (Exception e) {
+                    System.out.println("Please type in item to take");
+                }
+            }
+            else if(command.equals("help")){
+                help();
+            }
+            else if (command.startsWith("portage")) {
+                player.portage(game.portageStart, game.portageEnd);
+            }
+            else if(command.equals("make cinnamon rolls")) {
                 game.checkWin(player, game.finalCamp);
+                break;
             }
-            break;
+            else if(command.equals("have")) {
+                player.myItems();
+            }
+            else if (command.equals("need")) {
+                player.need();
+            }
+            else if (command.startsWith("examine")) {
+                player.examine(command);
+            }
+            else {
+                System.out.println("I'm sorry I don't understand that command. Enter 'help' to get a reminder of what you can do");
+            }
         }
-        else if(command.equals("have")) {
-            player.myItems();
-        }
-        else {
-            System.out.println("I'm sorry I don't understand that command. Enter 'help' to get a reminder of what you can do");
-        }
-    }
-    System.out.println("Thank you for playing!");
-    myObj.close();
+        System.out.println("Thank you for playing!");
+        myObj.close();
 }
 }

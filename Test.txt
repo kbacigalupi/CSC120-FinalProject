@@ -1,0 +1,7 @@
+help
+paddle to Lake one
+take
+take item
+take sugar
+paddle to campsite one
+look

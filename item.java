@@ -17,6 +17,7 @@ public class Item {
 
     /*Item constructor
      * @param the name and use of the object
+     * @param the use of the object
      */
     public Item(String name, String use) {
         this.name = name;
