@@ -16,7 +16,7 @@ I think I would also work on testing-potentially by having the scanner read a fi
 
 What was the most helpful piece of feedback you received while working on your project? Who gave it to you?
 I think it was helpful to hear that there should be more connection between the locations. Originally, the user had to go through the lake to get from place to place. Now they can move from campsite to campsite if the campsites are next to each other. I received this feedback from my classmates after they test played the game. 
-It was also helpful to hear that I should try a switch() command from you. Even though I couldn't implement it in the controller, I used it in the Location class. I still definitley need practice-I couldn't get the switch function to work unless I wrote a "break" statement after every case.
+It was also helpful to hear that I should try a switch() command from you. Even though I couldn't implement it in the controller, I used it in the Location class. I still definitely need practice-I couldn't get the switch function to work unless I wrote a "break" statement after every case.
 
 If you could go back in time and give your past self some advice about this project, what hints would you give?
 I would tell her that it's ok to write messy methods the first time (and also end up keeping them messy. Sometimes you can only give so much time and energy in a really stressful time generally.) I would say every instinct you have in creating or changing a data structure-whether a new arraylist or the need to make something public for other classes to access it was right. 
