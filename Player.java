@@ -100,13 +100,6 @@ public class Player {
     }
 
 
-    /*Accessor for the location of the person
-     * @return location of player
-     */
-    public Location getLocation() {
-        return this.location;
-    }
-
     /*Tells the user what is going on around them*/
     public void lookAround() {
         System.out.println(this.location.description);
